@@ -1,0 +1,1 @@
+console.log('fist type script console code ')
