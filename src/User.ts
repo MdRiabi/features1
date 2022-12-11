@@ -16,6 +16,11 @@ export class User {
         }
     }
 
+    markerContent(): string{
+        return `user name : ${this.name}` ; 
+
+    }
+
 }
 
 
