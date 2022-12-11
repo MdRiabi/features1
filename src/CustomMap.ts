@@ -3,8 +3,8 @@ import { Company } from './Company';
 
 // instructions to every other class 
 //on how they can be an argument to 'addmarker'
-interface Mappable{
-    location:{
+interface Mappable {
+    location: {
         lat: number;
         lng: number;
     };
@@ -25,26 +25,33 @@ export class CustomMap {
 
 
     addMarker(mappable: Mappable): void {
-        
-        new google.maps.Marker({
+
+        const marker = new google.maps.Marker({
             map: this.googleMap,
             position: {
                 lat: mappable.location.lat,
                 lng: mappable.location.lng
             }
         });
+
+        marker.addListener('click', () => {
+            const infoWindow = new google.maps.InfoWindow({
+                content: 'window info message'
+            });
+            infoWindow.open(this.googleMap, marker)
+        });
     }
 
-   /*  addCompanyMarker(company: Company): void {
-
-        new google.maps.Marker({
-            map: this.googleMap,
-            position:{
-                lat:company.location.lat,
-                lng: company.location.lng
-            }
-        })
-
-    }
- */
+    /*  addCompanyMarker(company: Company): void {
+ 
+         new google.maps.Marker({
+             map: this.googleMap,
+             position:{
+                 lat:company.location.lat,
+                 lng: company.location.lng
+             }
+         })
+ 
+     }
+  */
 }
